@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/multer": "^2.3.0",
+    "multer": "^2.4.0",
+    "zod": "^4.6.5"
+  }
+}
