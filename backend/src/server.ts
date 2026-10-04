@@ -6,7 +6,7 @@ import { answerFromDocument, ingestDocument } from './index.js';
 
 const app = express();
 app.use(cors({
-  origin: ['study-comapnion.vercel.app', 'http://localhost:5173'],
+  origin: ['https://study-comapnion.vercel.app', 'http://localhost:5173'],
 }));
 app.use(express.json());
 
