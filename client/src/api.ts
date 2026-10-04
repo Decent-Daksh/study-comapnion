@@ -1,7 +1,9 @@
 import { DocumentMetaSchema, AskResponseSchema, type AskResponse, type DocumentMeta } from './types';
 
+const API_BASE = import.meta.env.VITE_API_BASE ?? '';
+
 export async function listDocuments(): Promise<DocumentMeta[]> {
-  const res = await fetch('/api/documents');
+  const res = await fetch(`${API_BASE}/api/documents`);
   if (!res.ok) throw new Error('Failed to list documents');
   const data = await res.json();
   return DocumentMetaSchema.array().parse(data);
@@ -11,7 +13,7 @@ export async function uploadDocument(file: File): Promise<DocumentMeta> {
   const form = new FormData();
   form.append('file', file);
 
-  const res = await fetch('/api/documents', {
+  const res = await fetch(`${API_BASE}/api/documents`, {
     method: 'POST',
     body: form,
   });
@@ -25,7 +27,7 @@ export async function uploadDocument(file: File): Promise<DocumentMeta> {
 }
 
 export async function askQuestion(question: string, documentIds: string[]): Promise<AskResponse> {
-  const res = await fetch('/api/ask', {
+  const res = await fetch(`${API_BASE}/api/ask`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
